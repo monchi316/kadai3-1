@@ -11,13 +11,13 @@ btn.addEventListener('click', () => {
 });
 
 function add() {
-  let tbody = document.querySelector('tbody');
-  let tr = document.createElement('tr');
+  const tbody = document.querySelector('tbody');
+  const tr = document.createElement('tr');
   tbody.appendChild(tr);
   tr.className = 'working';
   
   for(let i=0; i<4; i++) {
-    let td = document.createElement('td');
+    const td = document.createElement('td');
     tr.appendChild(td);
     if(i === 0) {
       td.className = 'idNumber';
@@ -25,11 +25,11 @@ function add() {
     } else if (i === 1) {
       td.textContent = task.value;
     } else if (i === 2) {
-      let workingbtn = document.createElement('button');
+      const workingbtn = document.createElement('button');
       td.appendChild(workingbtn);
       workingbtn.textContent = '作業中';
     } else if (i === 3) {
-      let removebtn = document.createElement('button');
+      const removebtn = document.createElement('button');
       td.appendChild(removebtn);
       removebtn.textContent = '削除';
     }
