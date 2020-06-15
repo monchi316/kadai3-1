@@ -3,38 +3,47 @@
 const btn = document.getElementById('btn');
 const tasks = [];
 
-btn.addEventListener('click', () => {
-  let task = document.getElementById('task').value;
-  tasks.push(task);
-  add();
-
+// 追加ボタン
+btn.addEventListener('click', () => {  
+  addTask();  
 });
 
-function add() {
+
+
+// ↓関数内容↓
+
+// タスクの追加
+const addTask = () => {
+  const task = {
+    id: tasks.length,
+    taskName: document.getElementById('taskForm').value,
+    status: '作業中',
+    remove: '削除',
+  }
+  tasks.push(task);
+
   const tbody = document.querySelector('tbody');
   const tr = document.createElement('tr');
   tbody.appendChild(tr);
   tr.className = 'working';
   
-  for(let i=0; i<4; i++) {
+  const keys = Object.keys(task);
+  keys.forEach(key => {
     const td = document.createElement('td');
     tr.appendChild(td);
-    if(i === 0) {
-      td.className = 'idNumber';
-      td.textContent = tasks.length - 1;
-    } else if (i === 1) {
-      td.textContent = task.value;
-    } else if (i === 2) {
+    if (task[key] === '作業中') {
       const workingbtn = document.createElement('button');
       td.appendChild(workingbtn);
-      workingbtn.textContent = '作業中';
-    } else if (i === 3) {
+      workingbtn.textContent = task.status;
+    } else if (task[key] === '削除') {
       const removebtn = document.createElement('button');
       td.appendChild(removebtn);
-      removebtn.textContent = '削除';
+      removebtn.textContent = task.remove;
+    } else {
+      td.textContent = task[key];
     }
-  }
-
-  task.value = '';
+  });
+   
+  taskForm.value = '';
 
 }
