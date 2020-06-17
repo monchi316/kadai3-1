@@ -42,7 +42,10 @@
 
     const td = document.createElement('td');
     tr.appendChild(td);
-    td.innerHTML = '<button name="removebtn">削除</button>';
+    const removebtn = document.createElement('button');
+    td.appendChild(removebtn);
+    removebtn.textContent = task.status;
+    removebtn.name = "removebtn";
 
     taskForm.value = '';
     
