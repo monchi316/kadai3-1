@@ -19,32 +19,33 @@
     }
     tasks.push(task);
     const tbody = document.querySelector('tbody');
-    while (tbody.firstChild) {
-      tbody.removeChild(tbody.firstChild);
-    }
+    tbody.innerHTML = '';
     tasks.forEach((task, index) => {
-      const tr = document.createElement('tr');
-      tbody.appendChild(tr);
-      tr.className = 'working';
-      const itd = document.createElement('td');
-      tr.appendChild(itd);
-      itd.textContent = index;
-      const ttd = document.createElement('td');
-      tr.appendChild(ttd);
-      ttd.textContent = task.taskName;
-      const std = document.createElement('td');
-      tr.appendChild(std);
-      const statusbtn = document.createElement('button');
-      std.appendChild(statusbtn);
-      statusbtn.name = 'statusbtn';
-      statusbtn.textContent = task.status[0];
-      const td = document.createElement('td');
-      tr.appendChild(td);
-      const removebtn = document.createElement('button');
-      td.appendChild(removebtn);
-      removebtn.name = 'removebtn';
-      removebtn.textContent = '削除';
+      const createTask = () => {
+        const tr = document.createElement('tr');
+        const itd = document.createElement('td');
+        const ttd = document.createElement('td');
+        const std = document.createElement('td');
+        const rtd = document.createElement('td');
+        const statusbtn = document.createElement('button');
+        const removebtn = document.createElement('button');
+        tbody.appendChild(tr);
+        tr.appendChild(itd);
+        tr.appendChild(ttd);
+        tr.appendChild(std);
+        tr.appendChild(rtd);
+        std.appendChild(statusbtn);
+        rtd.appendChild(removebtn);
+        tr.className = 'working';
+        itd.textContent = index;
+        ttd.textContent = task.taskName;
+        statusbtn.name = 'statusbtn';
+        statusbtn.textContent = task.status[0];
+        removebtn.name = 'removebtn';
+        removebtn.textContent = '削除';
+      }
+      createTask();
+      taskForm.value = '';
     });
-    taskForm.value = '';
   }
 }
